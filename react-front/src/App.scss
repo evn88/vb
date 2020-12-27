@@ -1,0 +1,25 @@
+$bg-color: #282c34;
+$input-color: #c7c6c6;
+$button-color: #3a509b;
+
+.App {
+  background-color: $bg-color;
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-areas: ". content .";
+  justify-items: center;
+  text-align: center;
+}
+
+.App-header {
+  width: 100%;
+  grid-area: content;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.clock {
+  font-size: calc(5px + 2vmin);
+  color: $bg-color + 25;
+}

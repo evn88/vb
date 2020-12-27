@@ -1,0 +1,15 @@
+{
+  "name": "json-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "run": "node main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vershkov E",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
