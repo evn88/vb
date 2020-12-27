@@ -1,17 +1,32 @@
 @import "../App";
 
+$border-radius: 10px;
+
 table {
-  border: 1px solid #ccc;
   border-spacing: 0px;
   width: 100%;
 }
 .table__elk {
   th {
     border: 1px solid #ccc;
+    border-bottom: none;
+    &:first-child {
+      border-top-left-radius: $border-radius;
+    }
+    &:last-child {
+      border-top-right-radius: $border-radius;
+    }
   }
 
   td {
     border: 1px solid #ccc;
+    padding: 5px;
+    &:first-child {
+      border-bottom-left-radius: $border-radius;
+    }
+    &:last-child {
+      border-bottom-right-radius: $border-radius;
+    }
   }
 
   .btn {
@@ -19,7 +34,7 @@ table {
     cursor: pointer;
     border-radius: 5px;
     font-size: calc(3px + 2vmin);
-    height: calc(30px + 2vmin);
+    height: calc(20px + 2vmin);
     color: rgb(255, 255, 255);
     transition-duration: 0.5s;
 
