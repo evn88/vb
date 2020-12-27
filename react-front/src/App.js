@@ -5,6 +5,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import Table from './components/Table';
 import InputForm from "./components/InputForm";
 import Clock from "./components/Clock";
+import Paginate from "./components/Paginate";
 
 library.add(fas)
 
@@ -26,7 +27,9 @@ class App extends React.Component {
         <header className="App-header">
           <h1>{appName}</h1>
           <InputForm onSearch={this.handleSearch} />
+          <Paginate />
           <Table />
+          <Paginate />
           <Clock />
         </header>
       </div>
