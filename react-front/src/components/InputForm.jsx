@@ -1,22 +1,23 @@
 import "./InputForm.scss";
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class InputForm extends React.Component {
   state = {
     inputText: "",
   };
 
-  handleInputTodo = ({ target: { value } }) => {
+  handleInputSearch = ({ target: { value } }) => {
     this.setState({
       inputText: value,
     });
   };
 
-  handleAddTodo = (e) => {
+  handleSearch = (e) => {
     e.preventDefault();
     this.setState({ inputText: "" });
-    this.props.onAddTodo(this.state.inputText);
-    console.log(this.state.inputText);
+    this.props.onSearch(this.state.inputText);
+    // console.log(this.state.inputText);
   };
 
   render() {
@@ -25,13 +26,13 @@ class InputForm extends React.Component {
       <form className="inputForm">
         <input
           type="text"
-          name="todoInput"
-          placeholder="Enter item"
+          name="searchInput"
+          placeholder="Search"
           value={inputText}
-          onChange={this.handleInputTodo}
+          onChange={this.handleInputSearch}
           autoFocus
         />
-        <button onClick={this.handleAddTodo}>⏎</button>
+        <button onClick={this.handleSearch}><FontAwesomeIcon icon="search" /></button>
       </form>
     );
   }

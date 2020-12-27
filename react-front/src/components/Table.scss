@@ -1,0 +1,35 @@
+@import "../App";
+
+table {
+  border: 1px solid #ccc;
+  border-spacing: 0px;
+  width: 100%;
+}
+.table__elk {
+  th {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    border: 1px solid #ccc;
+  }
+
+  .btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: calc(3px + 2vmin);
+    height: calc(30px + 2vmin);
+    color: rgb(255, 255, 255);
+    transition-duration: 0.5s;
+
+    &-default {
+      background-color: $button-color;
+
+      &:hover {
+        background-color: $button-color + 25;
+      }
+    }
+
+  }
+}
