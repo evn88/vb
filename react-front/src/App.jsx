@@ -1,12 +1,14 @@
 import "./App.scss";
 import React from "react";
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { BrowserRouter, Route } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Table from './components/Table';
 import Json from './components/Json';
 import InputForm from "./components/InputForm";
 import Clock from "./components/Clock";
+import CommentItem from "./components/pages/CommentItem";
 
 
 library.add(fas)
@@ -57,15 +59,15 @@ class App extends React.Component {
   render() {
 
     const { error, isLoaded , comments, format } = this.state;
-    let list;
+    let content;
     if (error) {
-      list = <div className="error">Ошибка: {error.message}</div>;
+      content = <div className="error">Ошибка: {error.message}</div>;
     } else if (!isLoaded) {
-      list = <div><FontAwesomeIcon icon="spinner" spin /></div>
+      content = <div><FontAwesomeIcon icon="spinner" spin /></div>
     } else if (format === 'table') {
-      list = <Table comments={comments} />
+      content = <Table comments={comments} />
     } else {
-      list = <Json comments={ comments } />
+      content = <Json comments={ comments } />
       console.log(format)
     }
 
@@ -73,9 +75,29 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>{appName}</h1>
-          <InputForm onSearch={this.handleSearch} onFormat={this.handleFormat}  format={format}/>
-          {list}
+          <BrowserRouter>
+            <Route exact path="/">
+              <h1>{appName}</h1>
+              <InputForm
+                onSearch={this.handleSearch}
+                onFormat={this.handleFormat}
+                format={format}
+              />
+
+              {content}
+
+            </Route>
+
+            <Route
+              path="/comment/:id"
+              render={
+                ({ match }) => {
+                  const { id } = match.params;
+                  return <CommentItem id={id}/>;
+                }
+              } />
+          </BrowserRouter>
+
           <Clock />
         </header>
       </div>
