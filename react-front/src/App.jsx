@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import Clock from "./components/Clock";
-import CommentItem from "./components/pages/CommentItem";
 import Home from "./components/pages/Home";
+import CommentItem from "./components/pages/CommentItem";
+import Clock from "./components/Clock";
 
 library.add(fas)
 
