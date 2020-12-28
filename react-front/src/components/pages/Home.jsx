@@ -1,8 +1,8 @@
 import React, { Component, Fragment }from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Table from './components/Table';
-import Json from './components/Json';
-import InputForm from "./components/InputForm";
+import Table from '../Table';
+import Json from '../Json';
+import InputForm from "../InputForm";
 
 export default class Home extends Component {
   constructor(props) {
