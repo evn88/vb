@@ -17,7 +17,7 @@ export default class Home extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3001/api/v1/').then(response => {
+    fetch('http://localhost:3001/api/v1/comments/').then(response => {
       return response.json();
     }).then((data) => {
       this.setState({
