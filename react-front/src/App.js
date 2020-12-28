@@ -3,6 +3,7 @@ import React from "react";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import Table from './components/Table';
+import Json from './components/Json';
 import InputForm from "./components/InputForm";
 import Clock from "./components/Clock";
 import Paginate from "./components/Paginate";
@@ -29,6 +30,7 @@ class App extends React.Component {
           <InputForm onSearch={this.handleSearch} />
           <Paginate />
           <Table />
+          <Json />
           <Paginate />
           <Clock />
         </header>
