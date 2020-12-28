@@ -4,10 +4,9 @@
   width: 100%;
   height: 40px;
   display: grid;
-  grid-template-columns: auto 85px 160px;
+  grid-template-columns: auto 85px 190px;
   grid-template-rows: 50px;
   padding-bottom: 10px;
-  justify-items: stretch;
 }
 
 .btn {
@@ -42,7 +41,8 @@
 
       button {
         width: 100%;
-        padding: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
       }
       button:first-child {
         border-radius: 20px 0 0 20px;
