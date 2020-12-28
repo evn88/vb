@@ -27,7 +27,7 @@ class Table extends React.Component {
                 <tr key={_source.id}>
                   <td>{ _source.id }</td>
                   <td>{ _source.postId }</td>
-                    <td>{ _source.name }</td>
+                  <td>{ _source.name }</td>
                   <td>{ _source.email }</td>
                   <td>
                       <Link

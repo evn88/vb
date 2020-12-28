@@ -11,6 +11,7 @@ class InputForm extends React.Component {
     this.setState({
       inputText: value,
     });
+    this.props.onSearch(value);
   };
 
   handleSearch = (e) => {
@@ -42,7 +43,7 @@ class InputForm extends React.Component {
           autoFocus
         />
 
-        <button className="btn btn-search" onClick={this.handleSearch}>
+        <button className="btn btn-search" onClick={this.handleSearch} disabled>
           <FontAwesomeIcon icon="search" />
         </button>
 
