@@ -1,14 +1,18 @@
 @import "../App";
 
-$border-radius: 10px;
+$border-radius: 20px;
+$border-color: #414141;
 
 table {
   border-spacing: 0px;
   width: 100%;
+  background-color: $bg-color - 5;
+  border-radius: $border-radius;
 }
 .table__elk {
+  font-size: calc(1px + 2vmin);
   th {
-    border: 1px solid #ccc;
+    border: 1px solid $border-color;
     border-bottom: none;
     &:first-child {
       border-top-left-radius: $border-radius;
@@ -19,7 +23,7 @@ table {
   }
 
   td {
-    border: 1px solid #ccc;
+    border: 1px solid $border-color;
     padding: 5px;
   }
 
@@ -38,16 +42,17 @@ table {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    font-size: calc(3px + 2vmin);
-    height: calc(20px + 2vmin);
-    color: rgb(255, 255, 255);
+    margin: 3px;
+    font-size: calc(1px + 1vmin);
+    height: calc(20px + 1vmin);
+    color: #ffffff;
     transition-duration: 0.5s;
 
     &-default {
       background-color: $button-color;
 
       &:hover {
-        background-color: $button-color + 25;
+        background-color: $button-color - 25;
       }
     }
 

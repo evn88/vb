@@ -1,7 +1,7 @@
 import "./Table.scss";
 import React from "react";
 import Paginate from "./Paginate";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Table extends React.Component {
   render() {
@@ -28,7 +28,7 @@ class Table extends React.Component {
                   <td>{ _source.postId }</td>
                     <td>{ _source.name }</td>
                   <td>{ _source.email }</td>
-                  <td><button className="btn btn-default">подробнее</button></td>
+                  <td><button className="btn btn-default"><FontAwesomeIcon icon="arrow-right" /></button></td>
                 </tr>
                 );
               })}
