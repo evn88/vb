@@ -17,8 +17,17 @@ class InputForm extends React.Component {
     e.preventDefault();
     this.setState({ inputText: "" });
     this.props.onSearch(this.state.inputText);
-    // console.log(this.state.inputText);
   };
+
+  handleFormatToTable = (e)=> {
+    e.preventDefault();
+    this.props.onFormat('table');
+  }
+
+  handleFormatToJson = (e)=> {
+    e.preventDefault();
+    this.props.onFormat('json');
+  }
 
   render() {
     const { inputText } = this.state;
@@ -38,8 +47,8 @@ class InputForm extends React.Component {
         </button>
 
         <div className="btn-group">
-          <button className="btn btn-default">JSON</button>
-          <button className="btn btn-default">TABLE</button>
+          <button className="btn btn-default" onClick={this.handleFormatToTable}>TABLE</button>
+          <button className="btn btn-default" onClick={this.handleFormatToJson}>JSON</button>
         </div>
       </form>
     );
