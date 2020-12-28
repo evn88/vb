@@ -1,5 +1,7 @@
 const axios = require('axios');
 const http = require('http');
+const serverPort = 3001;
+
 const elastic = axios.create({
   baseURL: 'http://localhost:9200/vblob/comments/',
   headers: {
@@ -7,7 +9,32 @@ const elastic = axios.create({
   }
 });
 
-// const server = http.createServer(requestListener);
+const requestHandler = async (request, response) => {
+  // Access-Control-Allow-Origin: https://amazing.site
+  response.writeHead(200, {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'http://localhost:3000'
+  })
+  console.log(request.url)
+  if (request.url === '/api/v1/') {
+    const result = await getComments();
+
+    response.end(JSON.stringify(result.data.hits.hits));
+    // console.log(result.data.hits.hits);
+
+
+  } else {
+    response.end('Hello Node.js Server!')
+  }
+}
+
+const server = http.createServer(requestHandler);
+server.listen(serverPort, (err) => {
+  if (err) {
+      return console.log('something bad happened', err)
+  }
+  console.log(`server is listening on ${serverPort}`)
+})
 
 const getComment = async (id)=> {
   try {
@@ -21,7 +48,7 @@ const getComments = async ()=> {
   try {
     const data = JSON.stringify({
       "size": 5,
-      // "_source": ["name", "email"]
+      "_source": ["id", "postId", "name", "email"]
       // q: '*:*'
     });
     return await elastic.get('_search', { data: data });
@@ -61,13 +88,13 @@ const search = async (query, args = [])=> {
 //   console.log(result.data._source);
 // });
 
-getComments().then(result => {
-  return result.data.hits.hits;
-}).then(e => {
-  e.forEach(element => {
-    console.log(element);
-  });
-});
+// getComments().then(result => {
+//   return result.data.hits.hits;
+// }).then(e => {
+//   e.forEach(element => {
+//     console.log(element);
+//   });
+// });
 
 
 
