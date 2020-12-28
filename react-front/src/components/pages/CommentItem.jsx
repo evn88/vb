@@ -34,8 +34,16 @@ export default class CommentItem extends Component {
 
   render() {
     const { id } = this.props;
+    const item = this.state.comments;
     return (
-      <h1>Comment Details {id}</h1>
+      <div className="comment-item">
+        <h1>Comment Details</h1>
+        <p>id: {id}</p>
+        <p>name: {item.name}</p>
+        <p>email: {item.email}</p>
+        <p>content: {item.body}</p>
+        <Link to={'/'} className="btn btn-default">Назад</Link>
+      </div>
     )
   }
 }

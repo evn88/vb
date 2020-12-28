@@ -10,19 +10,21 @@ const elastic = axios.create({
 });
 
 const requestHandler = async (request, response) => {
-  // Access-Control-Allow-Origin: https://amazing.site
   response.writeHead(200, {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:3000'
   })
   console.log(request.url)
-  if (request.url === '/api/v1/') {
+  if (request.url === '/api/v1/comments/') {
     const result = await getComments();
-
     response.end(JSON.stringify(result.data.hits.hits));
-    // console.log(result.data.hits.hits);
 
-
+  } else if (request.url.match('(\/api\/v1\/comment\/)([0-9])')) {
+    const [ url, path, id ] = request.url.match('(\/api\/v1\/comment\/)([0-9])');
+    if (id) {
+      const result = await getComment(id);
+      response.end(JSON.stringify(result.data._source));
+    }
   } else {
     response.end('Hello Node.js Server!')
   }
@@ -57,22 +59,24 @@ const getComments = async ()=> {
   }
 }
 
-const search = async (query, args = [])=> {
-  try {
-    const data = JSON.stringify({
-      "_source": true,
-      "query": {
-        "match": {
-          "body": query
-        }
-      }
-    });
 
-    return await elastic.get('_search', { data: data });
-  } catch (err) {
-    console.error( err );
-  }
-}
+
+// const search = async (query, args = [])=> {
+//   try {
+//     const data = JSON.stringify({
+//       "_source": true,
+//       "query": {
+//         "match": {
+//           "body": query
+//         }
+//       }
+//     });
+
+//     return await elastic.get('_search', { data: data });
+//   } catch (err) {
+//     console.error( err );
+//   }
+// }
 
 
 // search('quam').then(result => {
