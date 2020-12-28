@@ -21,11 +21,16 @@ table {
   td {
     border: 1px solid #ccc;
     padding: 5px;
-    &:first-child {
-      border-bottom-left-radius: $border-radius;
-    }
-    &:last-child {
-      border-bottom-right-radius: $border-radius;
+  }
+
+  tr:last-child {
+    td {
+      &:first-child {
+        border-bottom-left-radius: $border-radius;
+      }
+      &:last-child {
+        border-bottom-right-radius: $border-radius;
+      }
     }
   }
 
