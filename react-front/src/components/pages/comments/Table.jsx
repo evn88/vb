@@ -1,14 +1,13 @@
 import "./Table.scss";
 import React from "react";
 import { Link } from "react-router-dom";
-import Paginate from "./Paginate";
+import Paginate from "../../Paginate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CommentItem from "./pages/CommentItem";
 
 class Table extends React.Component {
   render() {
     const { comments } = this.props;
-    // this.getData();
+
     return (
       <div>
         <Paginate />
