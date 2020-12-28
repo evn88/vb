@@ -32,7 +32,15 @@ class InputForm extends React.Component {
           onChange={this.handleInputSearch}
           autoFocus
         />
-        <button onClick={this.handleSearch}><FontAwesomeIcon icon="search" /></button>
+
+        <button className="btn btn-search" onClick={this.handleSearch}>
+          <FontAwesomeIcon icon="search" />
+        </button>
+
+        <div className="btn-group">
+          <button className="btn btn-default">JSON</button>
+          <button className="btn btn-default">TABLE</button>
+        </div>
       </form>
     );
   }
