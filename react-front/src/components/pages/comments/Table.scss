@@ -52,3 +52,18 @@ table {
     }
   }
 }
+
+.pagination-group {
+  width : 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.total-records {
+  width: 100%;
+  font-size: 15px;
+  color: $bg-color + 40;
+  align-self: center;
+  padding-bottom: 20px;
+}

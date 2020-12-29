@@ -80,6 +80,24 @@ $button-color: #3a509b;
     }
   }
 
+  &-paginate {
+    color:  rgb(141, 141, 141);
+    margin-right: 1px;
+    margin-left: 1px;
+    background: none;
+    text-decoration: none;
+    &:hover {
+      color: white;
+      background-color: $bg-color + 50;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+      background-color: $bg-color + 50;
+    }
+  }
+
   &-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
