@@ -1,16 +1,53 @@
 import "./Table.scss";
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Paginate from "../../Paginate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Table extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onPage = this.onPage.bind(this);
+    this.state = {
+      currentPage: 1,
+      totalPages: null,
+      pageLimit: 20,
+      comments: []
+    }
+  }
+
+  numberDeclension = (number, word = 'запис') => {
+    if(!typeof($number) === 'number') throw `Value is not integer: ${number}`.toString();
+    if (number === 0 || number >= 5 ) return word + "ей";
+    if (number === 1) return word + "ь";
+    if (number >= 2 && number <= 4) return word + "и";
+  }
+
+  onPage = page => {
+    this.setState({
+      currentPage: page,
+    });
+  }
+
   render() {
-    const { comments } = this.props;
+    const { pageLimit, currentPage } = this.state;
+    const offset = (currentPage - 1) * pageLimit;
+    const comments = this.props.comments.slice(offset, offset + pageLimit);
+
+    const currentRecords = comments.length;
+    const totalRecords = this.props.comments.length;
 
     return (
-      <div>
-        <Paginate />
+      <Fragment>
+        <div className="pagination-group">
+          <span className="total-records">Показано {currentRecords} {this.numberDeclension(currentRecords)}</span>
+          <Paginate
+            totalRecords={totalRecords}
+            pageLimit={pageLimit}
+            onPageChanged={this.onPage}
+          />
+        </div>
+
         <table className="table__elk">
           <thead>
             <tr>
@@ -18,7 +55,7 @@ class Table extends React.Component {
               <th>post_id</th>
               <th>name</th>
               <th>email</th>
-              <th>...</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -43,8 +80,12 @@ class Table extends React.Component {
           </tbody>
         </table>
 
-        <Paginate />
-        </div>
+        <Paginate
+          totalRecords={totalRecords}
+          pageLimit={pageLimit}
+          onPageChanged={this.onPage}
+        />
+      </Fragment>
     );
   }
 }

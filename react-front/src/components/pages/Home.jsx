@@ -8,8 +8,10 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.handleFormat = this.handleFormat.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.state = {
       error: null,
+      commentsOriginal: [],
       comments: [],
       format: 'table',
       isLoaded: false
@@ -21,11 +23,10 @@ export default class Home extends Component {
       return response.json();
     }).then((data) => {
       this.setState({
+        commentsOriginal: data,
         comments: data,
         isLoaded: true
       });
-
-      console.log(data);
     },
     (error) => {
       this.setState({
@@ -37,17 +38,22 @@ export default class Home extends Component {
   }
 
   handleSearch = (search) => {
-    console.log(search);
+    search = search.toLowerCase();
+    const commentsOriginal = this.state.commentsOriginal;
+    this.setState({
+      comments: commentsOriginal.filter(comment => {
+        return (comment._source.name.toLowerCase().indexOf(search) !== -1) || (comment._source.email.toLowerCase().indexOf(search) !== -1);
+      })
+    });
+    // console.log(this.state.comments, search);
   }
 
   handleFormat(format) {
     this.setState({ format: format });
-    console.log(format);
   }
 
 
   render() {
-
     const { error, isLoaded , comments, format } = this.state;
     let content;
     if (error) {
@@ -58,7 +64,6 @@ export default class Home extends Component {
       content = <Table comments={comments} />
     } else {
       content = <Json comments={ comments } />
-      console.log(format)
     }
 
 
