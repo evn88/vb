@@ -1,65 +1,79 @@
-const axios = require('axios');
-const http = require('http');
+const axios = require("axios");
+const http = require("http");
 const serverPort = 3001;
-
-const elastic = axios.create({
-  baseURL: 'http://localhost:9200/vblob/comments/',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-
-const requestHandler = async (request, response) => {
-  response.writeHead(200, {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:3000'
-  })
-  console.log(request.url)
-  if (request.url === '/api/v1/comments/') {
-    const result = await getComments();
-    response.end(JSON.stringify(result.data.hits.hits));
-
-  } else if (request.url.match('(\/api\/v1\/comment\/)([0-9])')) {
-    const [ url, path, id ] = request.url.match('(\/api\/v1\/comment\/)([0-9])');
-    if (id) {
-      const result = await getComment(id);
-      response.end(JSON.stringify(result.data._source));
-    }
-  } else {
-    response.end('Hello Node.js Server!')
-  }
+const header = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "http://localhost:3000",
 }
 
+//инициализируем axios для запросов к Elasticsearch
+const elastic = axios.create({
+  baseURL: "http://localhost:9200/vblob/comments/",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Реализация API
+const requestHandler = async (request, response) => {
+  response.writeHead(200, header);
+  console.log(request.url);
+
+  if (request.url === "/api/v1/comments/") {
+    const result = await getComments();
+    response.end(JSON.stringify(result.data.hits.hits));
+  } else if (request.url.match("(/api/v1/comment/)([0-9])")) {
+    //поиск ID в строке запроса
+    const [url, path, id] = request.url.match("(/api/v1/comment/)([0-9]+)");
+    if (id) {
+      const result = await getComment(id);
+      if (result !== undefined) {
+        response.end(JSON.stringify(result.data._source));
+      } else {
+        response.writeHead(404,header);
+        response.statusMessage = 'Not found';
+        response.end('Not found item by id: '+id);
+      }
+    } else {
+      response.writeHead(500,header);
+      response.end("Error ID", id);
+    }
+  } else {
+    response.end("Hello Node.js Server!");
+  }
+};
+
+// Создаем сервер и слушаем 3001 порт
 const server = http.createServer(requestHandler);
 server.listen(serverPort, (err) => {
   if (err) {
-      return console.log('something bad happened', err)
+    return console.log("something bad happened", err);
   }
-  console.log(`server is listening on ${serverPort}`)
-})
+  console.log(`server is listening on ${serverPort}`);
+});
 
-const getComment = async (id)=> {
+//получаем комментарий по ID
+const getComment = async (id) => {
   try {
     return await elastic.get(id.toString());
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
-}
+};
 
-const getComments = async ()=> {
+//получаем все комментарии
+const getComments = async () => {
   try {
     const data = JSON.stringify({
-      "size": 5,
-      "_source": ["id", "postId", "name", "email"]
+      size: 5,
+      _source: ["id", "postId", "name", "email"],
       // q: '*:*'
     });
-    return await elastic.get('_search', { data: data });
+    return await elastic.get("_search", { data: data });
   } catch (err) {
     console.error(err);
   }
-}
-
-
+};
 
 // const search = async (query, args = [])=> {
 //   try {
@@ -77,7 +91,6 @@ const getComments = async ()=> {
 //     console.error( err );
 //   }
 // }
-
 
 // search('quam').then(result => {
 //   return result.data.hits.hits;
@@ -99,8 +112,6 @@ const getComments = async ()=> {
 //     console.log(element);
 //   });
 // });
-
-
 
 // {
 //   "from" : 0,
