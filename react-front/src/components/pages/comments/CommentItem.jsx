@@ -1,6 +1,7 @@
 import "./CommentItem.scss";
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class CommentItem extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class CommentItem extends Component {
 
   componentDidMount = () => {
     fetch('http://localhost:3001/api/v1/comment/'+this.props.id).then(response => {
-      console.log(response);
+      // console.log(response);
       return response.json();
     }).then(
       (data) => {
@@ -23,7 +24,7 @@ export default class CommentItem extends Component {
           comments: data,
           isLoaded: true
         });
-        console.log(data);
+        // console.log(data);
       },
       (error) => {
         this.setState({
@@ -32,7 +33,7 @@ export default class CommentItem extends Component {
         });
         console.error('error: ', error);
       }
-    );
+    )
   }
 
   render() {
@@ -43,7 +44,7 @@ export default class CommentItem extends Component {
         <div className="comment-item">
           <h1>Comment Details</h1>
           <p className="error">Ошибка загрузки</p>
-          <Link to={'/'} className="btn btn-default">Назад</Link>
+          <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
         </div>
       )
     } else {
@@ -57,7 +58,7 @@ export default class CommentItem extends Component {
             <p><b>email: </b>{item.email}</p>
             <p><b>content: </b>{item.body}</p>
           </div>
-          <Link to={'/'} className="btn btn-default">Назад</Link>
+          <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
         </div>
       )
     }

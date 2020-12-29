@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function NotFound() {
   let location = useLocation();
@@ -8,7 +9,7 @@ export default function NotFound() {
       <h3>
         <p>Page <code className="error">{location.pathname}</code> not found!</p>
         <br/>
-        <Link to={'/'} className="btn btn-default">На главную</Link>
+        <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="home" /> На главную</Link>
       </h3>
     </div>
   );

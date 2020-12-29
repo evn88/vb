@@ -65,9 +65,8 @@ const getComment = async (id) => {
 const getComments = async () => {
   try {
     const data = JSON.stringify({
-      size: 5,
+      size: 500,
       _source: ["id", "postId", "name", "email"],
-      // q: '*:*'
     });
     return await elastic.get("_search", { data: data });
   } catch (err) {
