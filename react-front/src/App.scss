@@ -27,3 +27,76 @@ $button-color: #3a509b;
 .error {
   color: red;
 }
+
+.btn {
+  background-color: $button-color;
+  border: none;
+  color: $input-color;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  padding: 3px 6px 3px 6px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $button-color - 15;
+    color: $input-color;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+    background-color: $button-color - 25;
+  }
+
+  &-search {
+    border-radius: 0 20px 20px 0;
+  }
+
+  &-arrow {
+    padding: 3px 6px 3px 6px;
+  }
+
+  &-default {
+    text-transform:lowercase;
+    padding: 5px 10px 5px 10px;
+  }
+
+  &-link {
+    color:  white;
+    background: none;
+    text-decoration: underline;
+    &:hover {
+      color: $button-color + 35;
+      background: none;
+    }
+
+    &:focus {
+      color: $button-color + 20;
+      border: none;
+      outline: none;
+      background: none;
+    }
+  }
+
+  &-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-self: stretch;
+    justify-self: right;
+
+    button {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    button:first-child {
+      border-radius: 20px 0 0 20px;
+      border-right: 1px solid $button-color - 12;
+    }
+    button:last-child {
+      border-radius: 0 20px 20px 0;
+    }
+  }
+}

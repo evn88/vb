@@ -1,3 +1,4 @@
+import "./CommentItem.scss";
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
@@ -38,10 +39,10 @@ export default class CommentItem extends Component {
     return (
       <div className="comment-item">
         <h1>Comment Details</h1>
-        <p>id: {id}</p>
-        <p>name: {item.name}</p>
-        <p>email: {item.email}</p>
-        <p>content: {item.body}</p>
+        <p><b>id: </b>{id}</p>
+        <p><b>name: </b>{item.name}</p>
+        <p><b>email: </b>{item.email}</p>
+        <p><b>content: </b>{item.body}</p>
         <Link to={'/'} className="btn btn-default">Назад</Link>
       </div>
     )

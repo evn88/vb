@@ -48,8 +48,8 @@ class InputForm extends React.Component {
         </button>
 
         <div className="btn-group">
-          <button className="btn btn-default" onClick={this.handleFormatToTable}>TABLE</button>
-          <button className="btn btn-default" onClick={this.handleFormatToJson}>JSON</button>
+          <button className="btn" onClick={this.handleFormatToTable}>TABLE</button>
+          <button className="btn" onClick={this.handleFormatToJson}>JSON</button>
         </div>
       </form>
     );

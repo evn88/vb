@@ -32,7 +32,7 @@ class Table extends React.Component {
                   <td>
                       <Link
                         to={`/comment/${_source.id}`}
-                        className="btn btn-default"
+                        className="btn btn-arrow"
                       >
                       <FontAwesomeIcon icon="arrow-right" />
                     </Link>

@@ -9,50 +9,7 @@
   padding-bottom: 30px;
 }
 
-.btn {
-    background-color: $button-color;
-    border: none;
-    color: $input-color;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition-duration: 0.4s;
 
-    &:hover {
-      background-color: $button-color - 15;
-      color: $input-color;
-    }
-
-    &:focus {
-      border: none;
-      outline: none;
-      background-color: $button-color - 25;
-    }
-
-    &-search {
-      border-radius: 0 20px 20px 0;
-    }
-
-    &-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-self: stretch;
-      justify-self: right;
-
-      button {
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-      button:first-child {
-        border-radius: 20px 0 0 20px;
-        border-right: 1px solid $button-color - 12;
-      }
-      button:last-child {
-        border-radius: 0 20px 20px 0;
-      }
-    }
-}
 
 input {
   background-color: $input-color;

@@ -45,28 +45,8 @@ table {
       text-align: left;
       padding: 5px 15px;
     }
-  }
-
-  .btn {
-    display: flex;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 50px;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(1px + 1vmin);
-    height: calc(20px + 1vmin);
-    color: #ffffff;
-    transition-duration: 0.5s;
-
-    &-default {
-      background-color: $button-color;
-
-      &:hover {
-        background-color: $button-color - 25;
-      }
+    td:last-child {
+      text-align: center;
     }
-
   }
 }
