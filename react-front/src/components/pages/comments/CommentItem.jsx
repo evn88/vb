@@ -39,10 +39,13 @@ export default class CommentItem extends Component {
     return (
       <div className="comment-item">
         <h1>Comment Details</h1>
-        <p><b>id: </b>{id}</p>
-        <p><b>name: </b>{item.name}</p>
-        <p><b>email: </b>{item.email}</p>
-        <p><b>content: </b>{item.body}</p>
+        <div className="content">
+          <p><b>id: </b>{id}</p>
+          <p><b>postId: </b>{item.postId}</p>
+          <p><b>name: </b>{item.name}</p>
+          <p><b>email: </b>{item.email}</p>
+          <p><b>content: </b>{item.body}</p>
+        </div>
         <Link to={'/'} className="btn btn-default">Назад</Link>
       </div>
     )

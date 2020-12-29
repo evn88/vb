@@ -1,31 +1,29 @@
 @import "../../../App";
 
 $border-radius: 20px;
-$border-color: #414141;
+$border-color: $bg-color + 15;
 
 table {
   border-spacing: 0px;
   width: 100%;
-  background-color: $bg-color - 5;
+  background-color: $bg-color + 5;
   border-radius: $border-radius;
 }
+
 .table__elk {
   font-size: calc(1px + 2vmin);
   th {
     border: 1px solid $border-color;
     border-bottom: none;
     padding: 7px;
+    font-weight: bold;
+    text-transform: uppercase;
     &:first-child {
       border-top-left-radius: $border-radius;
     }
     &:last-child {
       border-top-right-radius: $border-radius;
     }
-  }
-
-  td {
-    border: 1px solid $border-color;
-    padding: 5px;
   }
 
   tr:last-child {
@@ -40,10 +38,14 @@ table {
     }
   }
 
+  td {
+    border: 1px solid $border-color;
+  }
+
   tr {
     td {
       text-align: left;
-      padding: 5px 15px;
+      padding: 4px 15px;
     }
     td:last-child {
       text-align: center;

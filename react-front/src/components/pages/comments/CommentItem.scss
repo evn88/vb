@@ -1,9 +1,14 @@
 @import "../../../App.scss";
 
 .comment-item {
-   p { text-align: left; }
-   b { color: $button-color + 100; }
-
 
 }
 
+.content {
+   padding: 50px;
+   border-radius: 20px;
+   margin-bottom: 30px;
+   background-color: $bg-color + 5;
+   p { text-align: left; }
+   b { color: $button-color + 100; }
+}
