@@ -21,25 +21,32 @@ const requestHandler = async (request, response) => {
 
   if (request.url === "/api/v1/comments/") {
     const result = await getComments();
-    response.end(JSON.stringify(result.data.hits.hits));
-  } else if (request.url.match("(/api/v1/comment/)([0-9])")) {
+
+    if (!result.isAxiosError) {
+      response.end(JSON.stringify(result.data.hits.hits));
+    } else {
+      response.writeHead(500, header);
+      response.end(result.toString());
+    }
+  }
+
+  if (request.url.match("(/api/v1/comment/)([0-9])")) {
     //поиск ID в строке запроса
     const [url, path, id] = request.url.match("(/api/v1/comment/)([0-9]+)");
     if (id) {
       const result = await getComment(id);
-      if (result !== undefined) {
+
+      if (!result.isAxiosError) {
         response.end(JSON.stringify(result.data._source));
       } else {
-        response.writeHead(404,header);
+        response.writeHead(404, header);
         response.statusMessage = 'Not found';
-        response.end('Not found item by id: '+id);
+        response.end(result.toString());
       }
     } else {
-      response.writeHead(500,header);
+      response.writeHead(500, header);
       response.end("Error ID", id);
     }
-  } else {
-    response.end("Hello Node.js Server!");
   }
 };
 
@@ -57,7 +64,7 @@ const getComment = async (id) => {
   try {
     return await elastic.get(id.toString());
   } catch (err) {
-    // console.log(err);
+    return(err);
   }
 };
 
@@ -70,7 +77,7 @@ const getComments = async () => {
     });
     return await elastic.get("_search", { data: data });
   } catch (err) {
-    console.error(err);
+    return(err);
   }
 };
 
