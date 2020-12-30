@@ -8,28 +8,25 @@ export default class CommentItem extends Component {
     super(props);
     this.state = {
       error: null,
-      comments: [],
-      format: 'table',
+      comment: [],
       isLoaded: false
     }
   }
 
   componentDidMount = () => {
     fetch('http://localhost:3001/api/v1/comment/'+this.props.id).then(response => {
-      // console.log(response);
       return response.json();
     }).then(
       (data) => {
         this.setState({
-          comments: data,
+          comment: data,
           isLoaded: true
         });
-        // console.log(data);
       },
       (error) => {
         this.setState({
           isLoaded: true,
-          error
+          error: error
         });
         console.error('error: ', error);
       }
@@ -37,8 +34,7 @@ export default class CommentItem extends Component {
   }
 
   render() {
-    const item = this.state.comments;
-    const error = this.state.error;
+    const { error, isLoaded , comment } = this.state;
     if (error) {
       return (
         <div className="comment-item">
@@ -47,16 +43,18 @@ export default class CommentItem extends Component {
           <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
         </div>
       )
+    } else if (!isLoaded) {
+      return <div><FontAwesomeIcon icon="spinner" spin /></div>
     } else {
       return (
         <div className="comment-item">
           <h1>Comment Details</h1>
           <div className="content">
-            <p><b>id: </b>{item.id}</p>
-            <p><b>postId: </b>{item.postId}</p>
-            <p><b>name: </b>{item.name}</p>
-            <p><b>email: </b>{item.email}</p>
-            <p><b>content: </b>{item.body}</p>
+            <p><b>id: </b>{comment.id}</p>
+            <p><b>postId: </b>{comment.postId}</p>
+            <p><b>name: </b>{comment.name}</p>
+            <p><b>email: </b>{comment.email}</p>
+            <p><b>content: </b>{comment.body}</p>
           </div>
           <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
         </div>

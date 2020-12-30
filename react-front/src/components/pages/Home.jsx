@@ -32,9 +32,9 @@ export default class Home extends Component {
     (error) => {
       this.setState({
         isLoaded: true,
-        error
+        error: error
       });
-      console.log(error);
+      console.log('ERROR: ', error);
     });
   }
 
