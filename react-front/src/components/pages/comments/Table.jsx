@@ -17,8 +17,8 @@ export default class Table extends React.Component {
   }
 
   //ставим первую страницу если был выполнен поиск
-  componentDidUpdate = () => {
-    if (this.props.searchCount > 0 && this.state.currentPage !== 1) {
+  componentDidUpdate = (prevProps) => {
+    if (this.props.searchCount > 0 && this.state.currentPage !== 1 && prevProps !== this.props) {
       this.setState( {
          currentPage: 1
       });
