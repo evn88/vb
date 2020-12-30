@@ -41,6 +41,11 @@ export default class Table extends React.Component {
     });
   }
 
+  getHighlightedText(text, highlight) {
+    const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+    return <span>{parts.map((part, index) => part.toLowerCase() === highlight.toLowerCase() ? <b key={index} className="highlight">{part}</b> : part)}</span>;
+  }
+
   render() {
     const { pageLimit, currentPage } = this.state;
     const offset = (currentPage - 1) * pageLimit;
@@ -66,8 +71,8 @@ export default class Table extends React.Component {
             <tr key={_source.id}>
               <td>{ _source.id }</td>
               <td>{ _source.postId }</td>
-              <td>{ _source.name }</td>
-              <td>{ _source.email }</td>
+              <td>{ this.getHighlightedText(_source.name, this.props.searchInput) }</td>
+              <td>{ this.getHighlightedText(_source.email, this.props.searchInput) }</td>
               <td>
                 <Link to={`/comment/${_source.id}`} className="btn btn-arrow">
                   <FontAwesomeIcon icon="arrow-right" />

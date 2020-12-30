@@ -28,6 +28,10 @@ $button-color: #3a509b;
   color: red;
 }
 
+.highlight {
+  background-color: rgb(172, 172, 5);
+}
+
 .btn {
   background-color: $button-color;
   border: none;
