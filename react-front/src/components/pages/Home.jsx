@@ -14,7 +14,8 @@ export default class Home extends Component {
       commentsOriginal: [],
       comments: [],
       format: 'table',
-      isLoaded: false
+      isLoaded: false,
+      searchCount: 0
     }
   }
 
@@ -43,9 +44,9 @@ export default class Home extends Component {
     this.setState({
       comments: commentsOriginal.filter(comment => {
         return (comment._source.name.toLowerCase().indexOf(search) !== -1) || (comment._source.email.toLowerCase().indexOf(search) !== -1);
-      })
+      }),
+      searchCount: search.length
     });
-    // console.log(this.state.comments, search);
   }
 
   handleFormat(format) {
@@ -54,14 +55,14 @@ export default class Home extends Component {
 
 
   render() {
-    const { error, isLoaded , comments, format } = this.state;
+    const { error, isLoaded , comments, format, searchCount } = this.state;
     let content;
     if (error) {
       content = <div className="error">Ошибка: {error.message}</div>;
     } else if (!isLoaded) {
       content = <div><FontAwesomeIcon icon="spinner" spin /></div>
     } else if (format === 'table') {
-      content = <Table comments={comments} />
+      content = <Table comments={comments} searchCount={searchCount}/>
     } else {
       content = <Json comments={ comments } />
     }
