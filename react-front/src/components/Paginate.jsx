@@ -56,7 +56,7 @@ export default class Paginate extends React.Component {
       <div className="container">
         <nav aria-label="Pagination">
             <ul className="pagination">
-              <li key="-1">
+              <li>
                 <Link to={'#'} className="btn btn-paginate" onClick={this.handleClick( (currentPage > 1) ? currentPage - 1 : currentPage )}>
                   <FontAwesomeIcon icon="angle-left" />
                 </Link>
@@ -66,11 +66,12 @@ export default class Paginate extends React.Component {
                 pages.map((page, index) => {
                   if (page === 1) {
                     return (
-                      <Fragment>
+                      <Fragment key={index}>
                         <li key={index}>
                           <Link to={'#'}
                             className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
                             onClick={this.handleClick(page)}
+                            key={index}
                           >{page}</Link>
                         </li>
                         { (currentPage > 5) ? dottedBtn : null }
@@ -84,6 +85,7 @@ export default class Paginate extends React.Component {
                         <Link to={'#'}
                           className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
                           onClick={this.handleClick(page)}
+                          key={index}
                         >{page}</Link>
                       </li>
                     )
@@ -91,12 +93,13 @@ export default class Paginate extends React.Component {
 
                   if (this.totalPages === page) {
                     return (
-                      <Fragment>
+                      <Fragment key={index}>
                         { dottedBtn }
                         <li key={index}>
                           <Link to={'#'}
                             className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
                             onClick={this.handleClick(page)}
+                            key={index}
                           >{page}</Link>
                         </li>
                       </Fragment>
@@ -105,7 +108,7 @@ export default class Paginate extends React.Component {
                 })
               }
 
-              <li key={this.totalPages + 1}>
+              <li>
                 <Link to={'#'} className="btn btn-paginate" onClick={this.handleClick( (currentPage < this.totalPages) ? currentPage + 1 : currentPage )}>
                   <FontAwesomeIcon icon="angle-right" />
                 </Link>
