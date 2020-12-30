@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Paginate.scss";
 import React, { Fragment } from "react";
@@ -32,7 +33,6 @@ export default class Paginate extends React.Component {
   gotoPage = (page) => {
     this.setState({ currentPage: page });
     this.props.onPageChanged(page);
-    // console.log(page);
   }
 
   fetchPageNumbers = () => {
@@ -56,58 +56,56 @@ export default class Paginate extends React.Component {
       <div className="container">
         <nav aria-label="Pagination">
             <ul className="pagination">
-              <li>
+              <li key="-1">
                 <Link to={'#'} className="btn btn-paginate" onClick={this.handleClick( (currentPage > 1) ? currentPage - 1 : currentPage )}>
                   <FontAwesomeIcon icon="angle-left" />
                 </Link>
               </li>
 
-              {pages.map((page, index) => {
-                if (page === 1) {
-                  return (
-                    <Fragment>
+              {
+                pages.map((page, index) => {
+                  if (page === 1) {
+                    return (
+                      <Fragment>
+                        <li key={index}>
+                          <Link to={'#'}
+                            className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
+                            onClick={this.handleClick(page)}
+                          >{page}</Link>
+                        </li>
+                        { (currentPage > 5) ? dottedBtn : null }
+                      </Fragment>
+                    )
+                  }
+
+                  if (page < currentPage + 4 && page > currentPage - 4) {
+                    return (
                       <li key={index}>
                         <Link to={'#'}
                           className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
                           onClick={this.handleClick(page)}
                         >{page}</Link>
                       </li>
-                      { (currentPage > 5) ? dottedBtn : null }
-                    </Fragment>
                     )
-                }
+                  }
 
-                if (page < currentPage + 4 && page > currentPage - 4) {
-                  return (
-                    <li key={index}>
-                      <Link to={'#'}
-                        className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
-                        onClick={this.handleClick(page)}
-                      >{page}</Link>
-                    </li>
+                  if (this.totalPages === page) {
+                    return (
+                      <Fragment>
+                        { dottedBtn }
+                        <li key={index}>
+                          <Link to={'#'}
+                            className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
+                            onClick={this.handleClick(page)}
+                          >{page}</Link>
+                        </li>
+                      </Fragment>
                     )
-                }
+                  }
+                })
+              }
 
-                if (this.totalPages === page) {
-                  return (
-                    <Fragment>
-                      <li>
-                        <Link to={'#'} className="btn btn-paginate">
-                          ...
-                        </Link>
-                      </li>
-                      <li key={index}>
-                        <Link to={'#'}
-                          className={`btn btn-paginate ${currentPage === page ? ' active' : ''}`}
-                          onClick={this.handleClick(page)}
-                        >{page}</Link>
-                      </li>
-                    </Fragment>
-                  )
-                }
-              })}
-
-              <li>
+              <li key={this.totalPages + 1}>
                 <Link to={'#'} className="btn btn-paginate" onClick={this.handleClick( (currentPage < this.totalPages) ? currentPage + 1 : currentPage )}>
                   <FontAwesomeIcon icon="angle-right" />
                 </Link>

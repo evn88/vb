@@ -53,7 +53,6 @@ export default class Home extends Component {
     this.setState({ format: format });
   }
 
-
   render() {
     const { error, isLoaded , comments, format, searchCount } = this.state;
     let content;
@@ -66,7 +65,6 @@ export default class Home extends Component {
     } else {
       content = <Json comments={ comments } />
     }
-
 
     return (
       <Fragment>

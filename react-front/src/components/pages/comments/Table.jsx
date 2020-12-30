@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Paginate from "../../Paginate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class Table extends React.Component {
+export default class Table extends React.Component {
   constructor(props) {
     super(props);
     this.onPage = this.onPage.bind(this);
@@ -14,7 +14,6 @@ class Table extends React.Component {
       pageLimit: 15,
       comments: []
     }
-    console.log('constructor')
   }
 
   numberDeclension = (number, word = 'запис') => {
@@ -31,8 +30,6 @@ class Table extends React.Component {
   }
 
   render() {
-    // console.log(this.props.searchCount)
-
     const { pageLimit, currentPage } = this.state;
     const offset = (currentPage - 1) * pageLimit;
     const comments = this.props.comments.slice(offset, offset + pageLimit);
@@ -91,5 +88,3 @@ class Table extends React.Component {
     );
   }
 }
-
-export default Table;
