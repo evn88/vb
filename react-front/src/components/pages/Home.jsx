@@ -19,6 +19,7 @@ export default class Home extends Component {
     }
   }
 
+  // загружаем данные
   componentDidMount = () => {
     fetch('http://localhost:3001/api/v1/comments/').then(response => {
       return response.json();
@@ -38,6 +39,7 @@ export default class Home extends Component {
     });
   }
 
+  // выполняем поиск
   handleSearch = (search) => {
     search = search.toLowerCase();
     const commentsOriginal = this.state.commentsOriginal;
@@ -49,6 +51,7 @@ export default class Home extends Component {
     });
   }
 
+  //ставим формат вывода - таблица/json
   handleFormat(format) {
     this.setState({ format: format });
   }

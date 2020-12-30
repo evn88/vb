@@ -16,6 +16,17 @@ export default class Table extends React.Component {
     }
   }
 
+  //ставим первую страницу если был выполнен поиск
+  componentDidUpdate = () => {
+    if (this.props.searchCount > 0 && this.state.currentPage !== 1) {
+      this.setState( {
+         currentPage: 1
+      });
+      this.forceUpdate();
+    }
+  }
+
+  // склоняет слово записи
   numberDeclension = (number, word = 'запис') => {
     if (!typeof($number) === 'number') throw `Value is not integer: ${number}`.toString();
     if (number === 0 || number >= 5 ) return word + "ей";
@@ -23,6 +34,7 @@ export default class Table extends React.Component {
     if (number >= 2 && number <= 4) return word + "и";
   }
 
+  // запоминаем номер страницы по которой был клик
   onPage = page => {
     this.setState({
       currentPage: page,
@@ -50,17 +62,14 @@ export default class Table extends React.Component {
       </thead>
       <tbody>
         {comments.map(({ _source }) => {
-            return (
+          return (
             <tr key={_source.id}>
               <td>{ _source.id }</td>
               <td>{ _source.postId }</td>
               <td>{ _source.name }</td>
               <td>{ _source.email }</td>
               <td>
-                  <Link
-                    to={`/comment/${_source.id}`}
-                    className="btn btn-arrow"
-                  >
+                <Link to={`/comment/${_source.id}`} className="btn btn-arrow">
                   <FontAwesomeIcon icon="arrow-right" />
                 </Link>
               </td>
@@ -82,6 +91,7 @@ export default class Table extends React.Component {
         <Paginate
           totalRecords={totalRecords}
           pageLimit={pageLimit}
+          currentPage={currentPage}
           onPageChanged={this.onPage}
         />
       </Fragment>

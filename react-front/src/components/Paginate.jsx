@@ -9,7 +9,6 @@ export default class Paginate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: 1,
       totalRecords: (this.props.totalRecords) ? this.props.totalRecords : null,
       pageLimit: (this.props.pageLimit) ? this.props.pageLimit : 30,
       pageNeighbours: (this.props.pageNeighbours) ? this.props.pageNeighbours : 0
@@ -31,7 +30,6 @@ export default class Paginate extends React.Component {
   }
 
   gotoPage = (page) => {
-    this.setState({ currentPage: page });
     this.props.onPageChanged(page);
   }
 
@@ -46,11 +44,10 @@ export default class Paginate extends React.Component {
   }
 
   render() {
-    const { currentPage } = this.state;
+    const { currentPage } = this.props;
     const pages = this.fetchPageNumbers();
-    if (!this.props.totalRecords || this.totalPages === 1) return null;
     const dottedBtn = <li><Link to={'#'} className="btn btn-paginate" disabled>...</Link></li>
-
+    if (!this.props.totalRecords || this.totalPages === 1) return null;
 
     return (
       <div className="container">
