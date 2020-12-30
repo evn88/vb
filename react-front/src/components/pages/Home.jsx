@@ -57,7 +57,7 @@ export default class Home extends Component {
     const { error, isLoaded , comments, format, searchCount } = this.state;
     let content;
     if (error) {
-      content = <div className="error">Ошибка: {error.message}</div>;
+      content = <div className="error">Ошибка загрузки данных</div>;
     } else if (!isLoaded) {
       content = <div><FontAwesomeIcon icon="spinner" spin /></div>
     } else if (format === 'table') {
