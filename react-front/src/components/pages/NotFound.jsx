@@ -9,7 +9,7 @@ export default function NotFound() {
       <h3>
         <p>Page <code className="error">{location.pathname}</code> not found!</p>
         <br/>
-        <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="home" /> На главную</Link>
+        <Link to={'/vblob/'} className="btn btn-default"><FontAwesomeIcon icon="home" /> На главную</Link>
       </h3>
     </div>
   );

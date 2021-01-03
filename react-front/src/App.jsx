@@ -17,11 +17,11 @@ export default class App extends Component {
         <header className="App-header">
           <BrowserRouter>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/vblob/" component={Home} />
               <Route
                 path="/comment/:id"
                 render={({ match }) => <CommentItem id={match.params.id}/>} />
-              <Route exact path="*">
+              <Route exact path="/vblob/*">
                 <NotFound />
               </Route>
             </Switch>

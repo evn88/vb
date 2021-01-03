@@ -40,7 +40,7 @@ export default class CommentItem extends Component {
         <div className="comment-item">
           <h1>Comment Details</h1>
           <p className="error">Ошибка загрузки</p>
-          <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
+          <Link to={'/vblob/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
         </div>
       )
     } else if (!isLoaded) {
@@ -56,7 +56,7 @@ export default class CommentItem extends Component {
             <p><b>email: </b>{comment.email}</p>
             <p><b>content: </b>{comment.body}</p>
           </div>
-          <Link to={'/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
+          <Link to={'/vblob/'} className="btn btn-default"><FontAwesomeIcon icon="arrow-left" /> Назад</Link>
         </div>
       )
     }
