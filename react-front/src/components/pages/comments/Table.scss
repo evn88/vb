@@ -67,3 +67,32 @@ table {
   align-self: center;
   padding-bottom: 20px;
 }
+
+@media (max-width:$mobile-width) {
+
+  table {
+    border-radius: 0;
+  }
+
+  .table__elk {
+
+    th {
+      &:nth-child(-n+2) {
+        display: none;
+      }
+      &:last-child {
+        border-radius: 0;
+      }
+    }
+
+    td {
+      &:nth-child(-n+2) {
+        display: none;
+      }
+    }
+
+    tr:last-child td:last-child {
+      border-radius: 0;
+    }
+  }
+}

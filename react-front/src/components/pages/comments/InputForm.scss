@@ -31,3 +31,31 @@ input {
     transition-duration: 2s;
   }
 }
+
+@media (max-width:$mobile-width) {
+  .inputForm {
+    height: 110px;
+    grid-auto-flow: column;
+    grid-template:
+      "input_search btn_search"
+      "btn_group btn_group";
+    justify-items: stretch;
+    align-items: stretch;
+  }
+
+  input {
+    height: 50px;
+    grid-area: input_search;
+  }
+
+  .btn-search {
+    height: 50px;
+    grid-area: btn_search;
+  }
+
+  .btn &-group {
+    height: 50px;
+    grid-area: btn_group;
+    justify-self: center;
+  }
+}
