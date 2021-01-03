@@ -1,6 +1,6 @@
 # Getting Started
 
-First TODO App in React JS
+View and find comments app in React JS
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
