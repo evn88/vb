@@ -22,7 +22,7 @@ export default class Home extends Component {
 
   // загружаем данные
   componentDidMount = () => {
-    fetch('http://localhost:3001/api/v1/comments/').then(response => {
+    fetch('https://dev.vershkoff.ru/vblob/comments.json').then(response => {
       return response.json();
     }).then((data) => {
       this.setState({

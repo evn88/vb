@@ -14,7 +14,7 @@ export default class CommentItem extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3001/api/v1/comment/'+this.props.id).then(response => {
+    fetch('https://dev.vershkoff.ru/vblob/comment.json').then(response => {
       return response.json();
     }).then(
       (data) => {
