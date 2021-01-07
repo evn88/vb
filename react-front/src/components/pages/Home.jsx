@@ -59,17 +59,16 @@ export default class Home extends Component {
   }
 
   render() {
-    const { error, isLoaded , comments, format, searchCount, searchInput } = this.state;
-    let content;
-    if (error) {
-      content = <div className="error">Ошибка загрузки данных</div>;
-    } else if (!isLoaded) {
-      content = <div><FontAwesomeIcon icon="spinner" spin /></div>
-    } else if (format === 'table') {
-      content = <Table comments={comments} searchCount={searchCount} searchInput={searchInput}/>
-    } else {
-      content = <Json comments={ comments } />
-    }
+    const { error, isLoaded, comments, format, searchCount, searchInput } = this.state;
+
+    const err = error ? <div className="error">Ошибка загрузки данных</div> : null;
+    const spinner = !isLoaded ? <FontAwesomeIcon icon="spinner" spin /> : null;
+    const content = (format === 'table')
+      ? <Table comments = { comments } searchCount = { searchCount } searchInput = { searchInput } />
+      : <Json comments={comments} />
+
+    const contentResult = (!error && isLoaded) ? content : spinner;
+
 
     return (
       <Fragment>
@@ -79,7 +78,8 @@ export default class Home extends Component {
           onFormat={this.handleFormat}
           format={format}
         />
-        {content}
+        { err }
+        { contentResult }
       </Fragment>
     );
   }
