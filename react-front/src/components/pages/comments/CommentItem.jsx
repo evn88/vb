@@ -2,6 +2,7 @@ import "./CommentItem.scss";
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Services from "./../../../Services";
 
 export default class CommentItem extends Component {
   constructor(props) {
@@ -14,9 +15,8 @@ export default class CommentItem extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3001/api/v1/comment/'+this.props.id).then(response => {
-      return response.json();
-    }).then(
+    const services = new Services();
+    services.getComment(this.props.id).then(
       (data) => {
         this.setState({
           comment: data,

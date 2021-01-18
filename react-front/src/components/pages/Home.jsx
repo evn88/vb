@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Table from './comments/Table';
 import Json from './comments/Json';
 import InputForm from "./comments/InputForm";
+import Services from "./../../Services";
 
 export default class Home extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ export default class Home extends Component {
 
   // загружаем данные
   componentDidMount = () => {
-    fetch('http://localhost:3001/api/v1/comments/').then(response => {
+    const services = new Services();
+    services.getComments().then(response => {
       return response.json();
     }).then((data) => {
       this.setState({
