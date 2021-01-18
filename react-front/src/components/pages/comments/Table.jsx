@@ -43,7 +43,11 @@ export default class Table extends React.Component {
 
   getHighlightedText(text, highlight) {
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
-    return <span>{parts.map((part, index) => part.toLowerCase() === highlight.toLowerCase() ? <b key={index} className="highlight">{part}</b> : part)}</span>;
+    return <span>{parts.map(
+      (part, index) => part.toLowerCase() === highlight.toLowerCase()
+        ? <b key={index} className="highlight">{part}</b>
+        : part
+    )}</span>;
   }
 
   render() {
