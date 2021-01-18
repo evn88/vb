@@ -122,6 +122,21 @@ $mobile-width: 476px;
       border-radius: 0 20px 20px 0;
     }
   }
+
+  &-export {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-self: stretch;
+    justify-self: center;
+
+    button {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-radius: 20px;
+      border-right: 1px solid $button-color - 12;
+    }
+  }
 }
 
 @media (max-width:$mobile-width) {

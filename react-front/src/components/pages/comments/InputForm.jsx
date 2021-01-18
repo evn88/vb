@@ -1,6 +1,7 @@
 import "./InputForm.scss";
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Export } from "../../Export";
 
 class InputForm extends React.Component {
   state = {
@@ -50,6 +51,9 @@ class InputForm extends React.Component {
         <div className="btn-group">
           <button className="btn" onClick={this.handleFormatToTable}>TABLE</button>
           <button className="btn" onClick={this.handleFormatToJson}>JSON</button>
+        </div>
+        <div className="btn-export">
+          <Export name="Export to XLSX" />
         </div>
       </form>
     );
