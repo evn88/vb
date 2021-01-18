@@ -52,7 +52,7 @@ class InputForm extends React.Component {
           <button className="btn" onClick={this.handleFormatToTable}>TABLE</button>
           <button className="btn" onClick={this.handleFormatToJson}>JSON</button>
         </div>
-        <div className="btn-export">
+        <div className="btn-group-export">
           <Export name="Export to XLSX" />
         </div>
       </form>
