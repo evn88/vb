@@ -2,6 +2,6 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export function Export({name="export"}) {
+export function Export({name="export", data=[]}) {
   return <button className="btn btn-default">{name}</button>
 }
