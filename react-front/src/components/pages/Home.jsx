@@ -24,9 +24,7 @@ export default class Home extends Component {
   // загружаем данные
   componentDidMount = () => {
     const services = new Services();
-    services.getComments().then(response => {
-      return response.json();
-    }).then((data) => {
+    services.getComments().then((data) => {
       this.setState({
         commentsOriginal: data,
         comments: data,

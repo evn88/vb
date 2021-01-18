@@ -14,7 +14,7 @@ export default class Services {
   }
 
   getComments() {
-    return this.getResource('/commnts');
+    return this.getResource('/comments/');
   }
 
   getComment(id) {
