@@ -1,9 +1,9 @@
-import React, { Component, Fragment }from "react";
+import React, { Component, Fragment, Suspense, lazy }from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Table from './comments/Table';
-import Json from './comments/Json';
 import InputForm from "./comments/InputForm";
 import Services from "./../../Services";
+const Json = lazy(() => import('./comments/Json'));
 
 export default class Home extends Component {
   constructor(props) {
@@ -65,7 +65,7 @@ export default class Home extends Component {
     const spinner = !isLoaded ? <FontAwesomeIcon icon="spinner" spin /> : null;
     const content = (format === 'table')
       ? <Table comments = { comments } searchCount = { searchCount } searchInput = { searchInput } />
-      : <Json comments={comments} />
+      : <Suspense fallback={<div>Загрузка...</div>}><Json comments={comments} /></Suspense>
 
     const contentResult = (!error && isLoaded) ? content : spinner;
 
